@@ -45,4 +45,10 @@ public class SpeakerRepositoryImpl implements SpeakerRepository {
     public Speaker getSpeaker(int id) {
         return jdbcTemplate.queryForObject("select * from speaker where id = ?", new SpeakerRowMapper(), id);
     }
+
+    @Override
+    public Speaker update(Speaker speaker) {
+        jdbcTemplate.update("update speaker set name= ? where id = ?", speaker.getName(), speaker.getId());
+        return speaker;
+    }
 }

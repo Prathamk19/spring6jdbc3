@@ -45,6 +45,8 @@ class Spring6jdbc3ApplicationTests {
     public void testGetSpeaker() {
         RestTemplate restTemplate = new RestTemplate();
         Speaker speaker = restTemplate.getForObject("http://localhost:8080/speaker/{id}", Speaker.class, 1);
+        speaker.setName("Prathamesh D Keni");
+        restTemplate.put("http://localhost:8080/speaker", speaker);
         System.out.println("Name: " + speaker.getName());
     }
 }

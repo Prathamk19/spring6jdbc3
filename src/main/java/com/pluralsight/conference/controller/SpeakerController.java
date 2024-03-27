@@ -31,4 +31,9 @@ public class SpeakerController {
     public Speaker getSpeaker(@PathVariable (value="id") int id) {
         return speakerService.getSpeaker(id);
     }
+
+    @PutMapping("/speaker")
+    public Speaker getSpeaker(@RequestBody Speaker speaker) {
+        return speakerService.update(speaker);
+    }
 }
