@@ -1,0 +1,1 @@
+INSERT INTO speaker (name) values ('Prathamesh Keni');
