@@ -40,4 +40,11 @@ class Spring6jdbc3ApplicationTests {
             System.out.println("Speaker name: " + speaker.getName());
         }
     }
+
+    @Test
+    public void testGetSpeaker() {
+        RestTemplate restTemplate = new RestTemplate();
+        Speaker speaker = restTemplate.getForObject("http://localhost:8080/speaker/{id}", Speaker.class, 1);
+        System.out.println("Name: " + speaker.getName());
+    }
 }
