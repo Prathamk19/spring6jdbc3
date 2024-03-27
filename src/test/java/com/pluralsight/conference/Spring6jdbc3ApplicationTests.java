@@ -12,8 +12,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+
 class Spring6jdbc3ApplicationTests {
+
+    @Test
+    public void testCreateSpeaker() {
+        RestTemplate restTemplate = new RestTemplate();
+        Speaker speaker = new Speaker();
+        speaker.setName("Shraddha Keni");
+        restTemplate.put("http://localhost:8080/", speaker);
+    }
 
     @Test
     void testGetSpeakers() {
@@ -31,5 +39,12 @@ class Spring6jdbc3ApplicationTests {
         for (Speaker speaker : speakers) {
             System.out.println("Speaker name: " + speaker.getName());
         }
+    }
+
+    @Test
+    public void testGetSpeaker() {
+        RestTemplate restTemplate = new RestTemplate();
+        Speaker speaker = restTemplate.getForObject("http://localhost:8080/speaker/{id}", Speaker.class, 1);
+        System.out.println("Name: " + speaker.getName());
     }
 }
