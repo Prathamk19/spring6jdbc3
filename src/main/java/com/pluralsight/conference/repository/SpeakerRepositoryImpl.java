@@ -2,7 +2,6 @@ package com.pluralsight.conference.repository;
 
 import com.pluralsight.conference.model.Speaker;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -42,7 +41,8 @@ public class SpeakerRepositoryImpl implements SpeakerRepository {
         return getSpeaker(key.intValue());
     }
 
-    private Speaker getSpeaker(int id) {
+    @Override
+    public Speaker getSpeaker(int id) {
         return jdbcTemplate.queryForObject("select * from speaker where id = ?", new SpeakerRowMapper(), id);
     }
 }
